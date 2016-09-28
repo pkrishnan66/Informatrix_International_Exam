@@ -9,11 +9,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>UNSETTLED BETS (HIGHEST WIN AMOUNTS)</title>
+    <title>GetUnusualUnSettledBets</title>
 </head>
 <body>
-    <h2>UNSETTLED BETS (HIGHEST WIN AMOUNTS)</h2>
-
+    <H1>UNSETTLED BET HISTORY </H1>    
     <table border="1">
         <tr>
             <th>
@@ -32,31 +31,30 @@
                 @Html.DisplayNameFor(model => model.Win)
             </th>
         </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Event)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Participant)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Stake)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Win)
-                </td>
-
-            </tr>
-        }
-
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stake)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Win)
+            </td>
+        </tr>
+    }
+    
     </table>
                         @Html.ActionLink("BACK", "InformatrixHome")
 
 </body>
+
 </html>

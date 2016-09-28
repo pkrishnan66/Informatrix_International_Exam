@@ -4,9 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Configuration;
 
-namespace Informatrix_Exam.Models
-{
-    public class UnSettledBets
+    public class UnSettledBetsTest
     {
         public int CustomerId { get; set; }
         public int Event { get; set; }
@@ -19,11 +17,12 @@ namespace Informatrix_Exam.Models
         /// Parse the CSV for the UnSettle Bets Information
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<UnSettledBets> ParseUnSettledBetCsv()
+        public IEnumerable<UnSettledBetsTest> ParseUnSettledBetCsv()
         {
-            List<UnSettledBets> listUnSettledBets = new List<UnSettledBets>();
+            List<UnSettledBetsTest> listUnSettledBets = new List<UnSettledBetsTest>();
 
-            string unSettleBetsFile = ConfigurationManager.AppSettings["UnSettledBetCsv"].ToString();
+            string unSettleBetsFile = "C:\\Users\\Prashanth\\Documents\\GitHub\\Informatrix_International_Exam\\Informatrix_Exam\\Informatrix_Exam\\CsvRepository\\UnSettled.csv";
+
             var unSettleBetFile = System.IO.File.ReadAllLines(unSettleBetsFile)
                       .Skip(1)
                       .ToList();
@@ -35,7 +34,7 @@ namespace Informatrix_Exam.Models
                 settleBetArray = unSettleBetRow.Split(',');
 
 
-                UnSettledBets objUnSettledBet = new UnSettledBets();
+                UnSettledBetsTest objUnSettledBet = new UnSettledBetsTest();
                 objUnSettledBet.CustomerId = Convert.ToInt32(settleBetArray[0]);
                 objUnSettledBet.Event = Convert.ToInt32(settleBetArray[1]);
                 objUnSettledBet.Participant = Convert.ToInt32(settleBetArray[2]);
@@ -50,18 +49,18 @@ namespace Informatrix_Exam.Models
         /// All Bets where then Unsettled Amount to be won is greater is 1000 or More
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<UnSettledBets> GetHighestRiskBets()
+        public int GetHighestRiskBets()
         {
-            UnSettledBets objUnsettledBets = new UnSettledBets();
+            UnSettledBetsTest objUnsettledBets = new UnSettledBetsTest();
             var lstUnSettledBets = objUnsettledBets.ParseUnSettledBetCsv().Where(x => x.Win > 1000).ToList();
             lstUnSettledBets.OrderByDescending(x => x.CustomerId).ToList();
-            return lstUnSettledBets;
+            return lstUnSettledBets.ToList().Count();
         }
 
-        public IEnumerable<UnSettledBets> GetUnusualUnSettledBets()
+        public int GetUnusualUnSettledBets()
         {
-            List<UnSettledBets> unSettledUnUsualBets = new List<UnSettledBets>();
-            UnSettledBets objUnsettledBets = new UnSettledBets();
+            List<UnSettledBetsTest> unSettledUnUsualBets = new List<UnSettledBetsTest>();
+            UnSettledBetsTest objUnsettledBets = new UnSettledBetsTest();
             var lstUnSettledBets = objUnsettledBets.ParseUnSettledBetCsv().ToList();
             foreach (var unsettleBet in lstUnSettledBets)
             {
@@ -71,19 +70,19 @@ namespace Informatrix_Exam.Models
                     unSettledUnUsualBets.Add(unsettleBet);
                 }
             }
-            return unSettledUnUsualBets.ToList();
+            return unSettledUnUsualBets.ToList().Count();
         }
 
-        public IEnumerable<UnSettledBets> GetUsualHighlyUnsualBets(int stakeIncrease)
+        public int GetUsualHighlyUnsualBets(int stakeIncrease)
         {
-            SettledBets ReadSettledBets = new SettledBets();
-            UnSettledBets objUnsettledBets = new UnSettledBets();
+            SettledBetsTest ReadSettledBets = new SettledBetsTest();
+            UnSettledBetsTest objUnsettledBets = new UnSettledBetsTest();
             //Order by Customer...
             var lstSettledBets = ReadSettledBets.ParseSettleBetCsv().OrderBy(sb => sb.CustomerId).ToList();
             var lstUnSettledBets = objUnsettledBets.ParseUnSettledBetCsv().OrderBy(usb => usb.CustomerId).ToList();
 
             var customersSettledStake = lstSettledBets.Select(x => x.CustomerId).Distinct();
-            List<UnSettledBets> unSettledRiskBets = new List<UnSettledBets>();
+            List<UnSettledBetsTest> unSettledRiskBets = new List<UnSettledBetsTest>();
 
 
             foreach (var customer in customersSettledStake)
@@ -107,9 +106,8 @@ namespace Informatrix_Exam.Models
 
             }
             unSettledRiskBets.OrderBy(x => x.CustomerId);
-            return unSettledRiskBets;
+            return unSettledRiskBets.Count();
 
         }
 
     }
-}

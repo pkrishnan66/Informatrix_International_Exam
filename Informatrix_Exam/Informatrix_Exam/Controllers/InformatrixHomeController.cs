@@ -28,15 +28,21 @@ namespace Informatrix_Exam.Controllers
         public ActionResult UnSettledBetsUnUsual()
         {
             UnSettledBets objUnSettledBets = new UnSettledBets();
-            objUnSettledBets.GetUsualHighlyUnsualBets(10);
-            return View();
+
+            return View(objUnSettledBets.GetUsualHighlyUnsualBets(10));
         }
 
         public ActionResult UnSettledBetsHighlyUnUsual()
         {
             UnSettledBets objUnSettledBets = new UnSettledBets();
-            objUnSettledBets.GetUsualHighlyUnsualBets(30);
-            return View();
+            return View(objUnSettledBets.GetUsualHighlyUnsualBets(30));
+        }
+
+        public ActionResult GetUnusualUnSettledBets()
+        {
+            UnSettledBets objUnSettledBets = new UnSettledBets();
+            return View(objUnSettledBets.GetUnusualUnSettledBets());
+
         }
 
         public ActionResult GetMaxUnSettledBets()

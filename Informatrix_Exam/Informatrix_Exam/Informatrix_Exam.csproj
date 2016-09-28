@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="StyleSheet\StyleSheet.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -143,7 +144,13 @@
     <Content Include="CsvRepository\Unsettled.csv" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\InformatrixHome\InformatrixHome.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Views\InformatrixHome\SettledBets.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformatrixHome\GetMaxUnSettledBets.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

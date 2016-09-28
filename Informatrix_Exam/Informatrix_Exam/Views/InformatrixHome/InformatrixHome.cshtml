@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "InformatrixHome";
+}
+<link href="~/StyleSheet/StyleSheet.css" rel="stylesheet" />
+<div class="background-colour">
+    <table class="table-Style">
+        <tr>
+            <td class="tablespace"></td>
+            <td>
+                 <h1>INFOMATRIX BETTING DATA </h1> 
+            </td>
+            <td class="tablespace"></td>
+            <td class="tablespace"></td>
+        </tr>
+        <tr>
+            <td class="tablespace"></td>
+            <td style="text-align:left">
+                @Html.ActionLink("Settled Bet History", "SettledBets")
+            </td>
+            <td class="tablespace"></td>
+            <td class="tablespace"></td>
+        </tr>
+        
+        <tr>
+            <td class="tablespace"></td>
+            <td style="text-align:left">
+                @Html.ActionLink("UnSettled Bets (Unusual)", "SettledBets")
+            </td>
+            <td class="tablespace"></td>
+            <td class="tablespace"></td>
+        </tr>
+        
+        <tr>
+            <td class="tablespace"></td>
+            <td style="text-align:left">
+                @Html.ActionLink("UnSettled Bets (Highly Unusual)", "SettledBets")
+            </td>
+            <td class="tablespace"></td>
+            <td class="tablespace"></td>
+        </tr>
+        
+        <tr>
+            <td class="tablespace"></td>
+            <td style="text-align:left">
+                @Html.ActionLink("UnSettled Bets (Highest Win)", "GetMaxUnSettledBets")
+            </td>
+            <td class="tablespace"></td>
+            <td class="tablespace"></td>
+        </tr>
+    </table>
+</div>

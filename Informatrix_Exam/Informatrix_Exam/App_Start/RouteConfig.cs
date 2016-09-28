@@ -16,7 +16,7 @@ namespace Informatrix_Exam
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "InformatrixHome", action = "SettledBets", id = UrlParameter.Optional }
+                defaults: new { controller = "InformatrixHome", action = "InformatrixHome", id = UrlParameter.Optional }
             );
         }
     }

@@ -54,21 +54,45 @@ namespace Informatrix_Exam.Models
         {
             UnSettledBets objUnsettledBets = new UnSettledBets();
             var lstUnSettledBets = objUnsettledBets.ParseUnSettledBetCsv().Where(x => x.Win > 1000).ToList();
+            lstUnSettledBets.OrderByDescending(x => x.CustomerId).ToList();
             return lstUnSettledBets;
         }
 
 
-        public void GetMidLevelStake()
+        public IEnumerable<UnSettledBets> GetUsualHighlyUnsualBets(int stakeIncrease)
         {
             SettledBets ReadSettledBets = new SettledBets();
+            UnSettledBets objUnsettledBets = new UnSettledBets();
             //Order by Customer...
-            var objList = ReadSettledBets.ParseSettleBetCsv().OrderBy(sb => sb.CustomerId).ToList();
-            var customers = objList.Select(x => x.CustomerId).Distinct();
+            var lstSettledBets = ReadSettledBets.ParseSettleBetCsv().OrderBy(sb => sb.CustomerId).ToList();
+            var lstUnSettledBets = objUnsettledBets.ParseUnSettledBetCsv().OrderBy(usb => usb.CustomerId).ToList();
 
-            foreach (var customer in customers)
+            var customersSettledStake = lstSettledBets.Select(x => x.CustomerId).Distinct();
+            List<UnSettledBets> unSettledRiskBets = new List<UnSettledBets>();
+
+
+            foreach (var customer in customersSettledStake)
             {
-                var stakes = objList.Where(x => x.CustomerId == customer).Sum(x => x.Stake);
+                var stakes = lstSettledBets.Where(x => x.CustomerId == customer).Sum(x => x.Stake);
+                var betCount = lstSettledBets.Where(x => x.CustomerId == customer).Count();
+                var averageStake = ((double)stakes / (double)betCount);
+
+                //Stake increase percentage...
+                double customerAverageStake = Math.Round(Convert.ToDouble(averageStake * stakeIncrease), 2);
+
+                //Iterate for each customer...
+                var unSettledCutomers = lstUnSettledBets.Where(x => x.CustomerId == customer);
+                foreach (var unSettledCustomer in unSettledCutomers)
+                {
+                    if ((double)unSettledCustomer.Stake >(double)customerAverageStake)
+                    {
+                        unSettledRiskBets.Add(unSettledCustomer);
+                    }
+                }
+
             }
+            unSettledRiskBets.OrderBy(x => x.CustomerId);
+            return unSettledRiskBets;
 
         }
 

@@ -1,50 +1,41 @@
-﻿@model IEnumerable<Informatrix_Exam.Models.SettledBets>
+﻿@model IEnumerable<Informatrix_Exam.Models.SettledBetHistory>
 
 @{
     ViewBag.Title = "SettledBets";
 }
 
-<h2>SettledBets</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
+<h2>SETTLED BET HISTORY</h2>
+<table border="1">
     <tr>
-        <th>
+         <th>
             @Html.DisplayNameFor(model => model.CustomerId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Event)
+            @Html.DisplayNameFor(model => model.BetCount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Participant)
+            @Html.DisplayNameFor(model => model.WinCount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Stake)
+            @Html.DisplayNameFor(model => model.WinPercent)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Win)
-        </th>
-        <th></th>
+       
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        
         <td>
             @Html.DisplayFor(modelItem => item.CustomerId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Event)
+            @Html.DisplayFor(modelItem => item.BetCount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Participant)
+            @Html.DisplayFor(modelItem => item.WinCount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Stake)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Win)
+            @Html.DisplayFor(modelItem => item.WinPercent)
         </td>
     </tr>
 }

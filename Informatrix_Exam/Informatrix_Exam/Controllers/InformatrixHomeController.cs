@@ -14,12 +14,26 @@ namespace Informatrix_Exam.Controllers
         //
         // GET: /InformatrixHome/
 
-        public ActionResult SettledBets()
+        public ActionResult InformatrixHome()
         {
-            UnSettledBets obj = new UnSettledBets();
-            obj.GetMidLevelStake();
-            return View(obj.GetHighestRiskBets());
+            return View();
         }
 
+        public ActionResult SettledBets()
+        {
+            SettledBetHistory objSettledBets = new SettledBetHistory();
+            return View(objSettledBets.GetSettledBetHistory());
+        }
+
+        public ActionResult UnSettledBets()
+        {
+            return View();
+        }
+
+        public ActionResult GetMaxUnSettledBets()
+        {
+            UnSettledBets objUnSettledBets = new UnSettledBets();
+            return View(objUnSettledBets.GetHighestRiskBets());
+        }
     }
 }

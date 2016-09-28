@@ -4,8 +4,6 @@
 3.The CSV Files for 'Settled.csv' and 'UnSettled.csv' have been added
 in the CsvRepository Folder.
 4.Csv files are read from these paths.
-4.Keeping in mind the TimeFrame the UI has been kept Simple as a 
-  slightly more complicated UI would have been more time consuming.
 5.The Unit Test Cases have been added in the Unit Test Folder.
 6. PLEASE NOTE : Task 2(a)
 The logic applied for Unsettled Bets 
@@ -25,8 +23,7 @@ Instructions:
 2.Please go the Web.config file and change the path of "SettledBetCsv" key and "UnSettledBetCsv" to match the path on User System.
 3.The same must be done for the Unit Test as well in the Parse Methods
  of the UnSettleBetsTest and SettleBestTest cs files.
-4. The rest of the code has been kept straight forward as possible and
-as mentioned UI is not been made fanciful keeping the Time Span in MInd and not to lack of Skill and Knowledge.
+4. The rest of the code has been kept straight forward as possible
 
 
 
